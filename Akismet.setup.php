@@ -49,6 +49,9 @@ $wgSpecialPages['AkismetAdmin'] = 'AkismetAdmin';
 // Register an event to load the i18n messages
 $wgHooks['LoadAllMessages'][] = 'mwAkismetLoadi18nMessages';
 
+// Register the handler for new user creation
+$wgHooks['AbortNewAccount'][] = array(new MwAkismet(), 'MwAkismetAbortNewAccount');
+
 // Register the features
 $wgExtensionCredits['other'][] = array(
     'name' => 'Akismet',

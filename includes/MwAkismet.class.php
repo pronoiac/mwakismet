@@ -162,6 +162,12 @@ class MwAkismet
 
         return $difftext;
     }
+    
+    public function MwAkismetAbortNewAccount( $user, $message ) {
+        // return true; // user ok.
+        $message = "Akismet flagged this as spam.";
+        return false; // stop creation.
+    }
 }
 
 ?>
