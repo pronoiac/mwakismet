@@ -164,9 +164,21 @@ class MwAkismet
     }
     
     public function MwAkismetAbortNewAccount( $user, $message ) {
-        // return true; // user ok.
-        $message = "Akismet flagged this as spam.";
-        return false; // stop creation.
+        mwAkismetLoadi18nMessages();
+        global $wgUser;
+       
+        $author = $user->getName(); 
+        
+        // $isSpam = $this->queryAkismet($author, $diff, $permalink);       
+        $isSpam = $this->queryAkismet($author, "", "");
+        
+        if ($isSpam) {
+            // stop user creation.
+            $message = "Akismet flagged this as spam.";
+            return false; 
+        }
+        
+        return true; // user ok.
     }
 }
 
