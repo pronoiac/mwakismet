@@ -36,15 +36,11 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 
 require_once( dirname( __FILE__ ) . '/includes/MwAkismet.class.php' );
 
-// Autoload the plugin's main class and the special page class
+// Autoload the plugin's main class
 $wgAutoloadClasses['MwAkismet'] = dirname(__FILE__) . '/includes/MwAkismet.class.php';
-$wgAutoloadClasses['AkismetAdmin'] = dirname(__FILE__) . '/includes/AkismetAdmin.class.php';
 
 // Register the edit handler
 $wgHooks['EditFilter'][] = array(new MwAkismet(), 'checkEditPageWithAkismet');
-
-// Register the admin special page
-$wgSpecialPages['AkismetAdmin'] = 'AkismetAdmin';
 
 // Register an event to load the i18n messages
 $wgHooks['LoadAllMessages'][] = 'mwAkismetLoadi18nMessages';
